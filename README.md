@@ -8,7 +8,7 @@ This project is a minimal viable product (MVP) for a marketplace application whe
 
  - View a list of offers ordered by votes
  - View detailed information for a specific offer
- - Upvote / rate offers
+ - Rate offers from 1 to 5 stars
  - Purchase an offer via an external platform
 
 The goal was to build a clean, responsive Angular application focused on core functionality and fast market entry.
@@ -24,7 +24,7 @@ npm install
 To start a local development server, run:
 
 ```bash
-ng serve
+npm run start
 ```
 
 Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
@@ -53,7 +53,7 @@ Once the server is running, open your browser and navigate to `http://localhost:
 ### Purchase Integration
 
  - "Buy Now" button redirects to:
-```js
+```text
 https://www.rebuy.de/kaufen/suchen?q=<offer-slug>
 ```
 
@@ -94,22 +94,23 @@ https://www.rebuy.de/kaufen/suchen?q=<offer-slug>
 │   │   │       ├── rating.component.ts
 │   │   │       ├── rating.component.html
 │   │   │       └── rating.component.scss
-│   │   └── other app files…
+│   │   │   └── other component files...
+│   │   └── other app files...
 │   └── assets
 │       └── logo.png
-└── other config files…
+└── other config files...
 ```
 
 ## Architecture Notes
 
  - App has only one feature: Offers
    - In here we have the pages, helpers, model, service, and store
- - "Dumb" components are in a shared folder to be reused
- - Centralized offer state via OfferStore
+ - "Dumb" components are in a shared folder named `components`, so they can be reused
+ - Centralized offer state via `OfferStore`
  - Pages templates:
-   - Offers List Page calls the OfferList component, so the template is embedded due to be short
-   - Offers Details has a more complex template, therefore it has it's html
- - Reusable RatingComponent (read-only & interactive modes)
+   - Offers List Page calls the OfferList component, so the template is embedded because it is short
+   - Offers Details has a more complex template, therefore it has its own html template
+ - Reusable `RatingComponent` (read-only & interactive modes)
    - Interactive mode enables the stars to be hovered and click
    - Click on stars submits vote
  - Clean BEM-based SCSS structure as much as possible
