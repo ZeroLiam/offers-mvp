@@ -1,4 +1,4 @@
-import { IOffer, IOfferApiObject, IOfferPreview, IOfferPreviewList, IRatingList } from "./offer.model";
+import { IOffer, IOfferApiObject, IOfferList, IOfferPreview, IOfferPreviewList, IRatingList } from "./offer.model";
 
 // Let's reuse the rating avg as quick function
 const RATING_AVG = (ratings: IRatingList) => {
@@ -25,4 +25,29 @@ export function mapOfferToPreview(offer: IOffer): IOfferPreview {
 // Sort offers by average rating
 export function sortOffers(offers: IOfferPreviewList): IOfferPreviewList {
   return [...offers].sort((a,b) => b.averageRating - a.averageRating);
+}
+
+
+// Vote offer
+export function voteOffer(id: number, rating: number, offers: IOfferList): IOfferList {
+  return offers.map((offer: IOffer) => {
+
+    // We look for the offer that we're voting for and update the ratings of that offer
+    if (offer.id === id) {
+      const newRatings = [
+        ...offer.ratings,
+        {
+          value: rating,
+          review_date: new Date().toISOString()
+        }
+      ];
+
+      return {
+        ...offer,
+        ratings: newRatings,
+        averageRating: RATING_AVG(newRatings)
+      }
+    }
+    return offer;
+  });
 }

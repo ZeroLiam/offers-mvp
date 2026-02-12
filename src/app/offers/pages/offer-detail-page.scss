@@ -1,0 +1,178 @@
+.offer-detail {
+  padding: 1.5rem 1rem;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  // LEFT SIDE (IMAGE)
+  &__left {
+    width: 100%;
+
+    img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 12px;
+      object-fit: cover;
+    }
+  }
+
+  // RIGHT SIDE (CONTENT)
+  &__right {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__title {
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  &__meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 1.5rem 0;
+
+    &-price {
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    &-rating {
+      display: flex;
+      align-items: center;
+      text-align: center;
+      flex-direction: column;
+    }
+  }
+
+  &__vote-button {
+    margin-top: 1rem;
+    padding: 0.65rem 1.5rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    background-color: #ff8c42;
+    color: white;
+
+    &:hover:not(:disabled) {
+      background-color: #e06b1b;
+      transform: translateY(-2px);
+    }
+
+    &--active {
+      background-color: #f5a623;
+      box-shadow: 0 0 0 3px rgba(245, 166, 35, 0.3);
+    }
+
+    &:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+      transform: none;
+    }
+  }
+
+  &__vote-feedback {
+    font-weight: 600;
+    color: #e06b1b;
+    font-size: 0.95rem;
+  }
+
+  &__divider {
+    margin: 1.5rem 0;
+    border: none;
+    height: 1px;
+    background: #e0e0e0;
+  }
+
+  &__description {
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    font-size: 1rem;
+  }
+
+  &__button {
+  padding: 0.85rem 1.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  align-self: flex-start;
+
+  background-color: #5dade2; // light blue
+  color: white;
+
+  &:hover {
+    background-color: #2e86c1; // dark blue
+    transform: translateY(-2px);
+  }
+
+  &:focus {
+    outline: 2px solid #2e86c1;
+    outline-offset: 2px;
+  }
+}
+
+  @media (min-width: 768px) {
+    padding: 2rem;
+
+    &__container {
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 3rem;
+    }
+
+    &__left,
+    &__right {
+      flex: 1;
+    }
+
+    &__title {
+      font-size: 2rem;
+    }
+
+    &__description {
+      font-size: 1.05rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    padding: 3rem 2rem;
+
+    &__container {
+      gap: 4rem;
+    }
+
+    &__left img {
+      max-height: 500px;
+    }
+
+    &__title {
+      font-size: 2.25rem;
+    }
+
+    &__meta-price {
+      font-size: 1.75rem;
+    }
+
+    &__description {
+      font-size: 1.1rem;
+      max-width: 90%;
+    }
+  }
+}

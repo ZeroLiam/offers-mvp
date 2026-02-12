@@ -1,0 +1,59 @@
+@if (!offer()) {
+<p>Loading details...</p>
+} @else if (offer(); as offer) {
+<section class="offer-detail">
+  <div class="offer-detail__container">
+
+    <div class="offer-detail__left">
+      <img [src]="offer.img_url" [alt]="offer.title" />
+    </div>
+
+    <div class="offer-detail__right">
+      <h1 class="offer-detail__title">{{ offer.title }}</h1>
+      <p><b>Category: </b>{{ offer.category.toUpperCase() }}</p>
+      <p><b>Brand: </b>{{ offer.brand }}</p>
+      <p><b>Model: </b>{{ offer.model }}</p>
+      <p><b>OS: </b>{{ offer.operating_system }}</p>
+
+      <div class="offer-detail__meta">
+        <span class="offer-detail__meta-price">
+          {{ offer.price.toFixed(2) | currency:'EUR':'symbol':'1.2-2' }}
+        </span>
+
+        <!-- Rating -->
+        <div class="offer-detail__meta-rating">
+          <app-rating [rating]="hasVoted() ? userRating() : offer.averageRating"
+            [isInteractive]="votingEnabled() && !hasVoted()" (ratingChange)="onRatingChange($event)"></app-rating>
+
+          <!-- Vote button -->
+          <button class="offer-detail__vote-button" (click)="onVoteClick()" [disabled]="hasVoted()">
+            @if(hasVoted()) {
+            ✓ Voted
+            } @else if(votingEnabled()) {
+            Select your rating
+            } @else {
+            Vote
+            }
+          </button>
+
+
+          <!-- Feedback -->
+          @if(hasVoted()) {
+          <span class="offer-detail__vote-feedback">
+            You voted {{ userRating() | number:'1.1-1' }} ⭐
+          </span>
+          }
+        </div>
+      </div>
+
+      <hr class="offer-detail__divider" />
+
+      <p class="offer-detail__description">{{ offer.description }}</p>
+      <a class="offer-detail__button" [href]="`https://www.rebuy.de/kaufen/suchen?q=${offer.slug}`" target="_blank"
+        rel="noopener noreferrer">
+        Buy Now
+      </a>
+    </div>
+  </div>
+</section>
+}

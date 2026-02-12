@@ -1,8 +1,11 @@
-<div class="rating">
+<button class="rating"
+  [class.rating--interactive]="isInteractive"
+  (click)="onClick($event)"
+>
   <div class="rating__stars">
     <div
       class="rating__stars--filled"
       [style.width.%]="ratingPercentage"
     ></div>
   </div>
-</div>
+</button>

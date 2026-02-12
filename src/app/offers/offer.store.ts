@@ -1,7 +1,7 @@
 import { computed, inject, Injectable, signal } from "@angular/core";
 import { IOfferList, IOfferPreviewList } from "./offer.model";
 import { OfferService } from "./offer.service";
-import { mapOfferToPreview, sortOffers } from "./offer.helper";
+import { mapOfferToPreview, sortOffers, voteOffer } from "./offer.helper";
 
 @Injectable({ providedIn: 'root' })
 export class OfferStore {
@@ -32,6 +32,13 @@ export class OfferStore {
   selectOfferById(id: number) {
     return computed(() =>
       this.offers().find(offer => offer.id === id)
+    );
+  }
+
+
+  setOfferVote(id: number, rating: number): void {
+    this.offers.update(offers =>
+      voteOffer(id, rating, offers)
     );
   }
 }
