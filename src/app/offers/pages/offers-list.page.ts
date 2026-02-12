@@ -1,12 +1,23 @@
 import { OffersListComponent } from "@/features/offers/offers-list/offers-list.component";
-import { Component } from "@angular/core";
+import { Component, inject } from "@angular/core";
+import { OfferStore } from "../offer.store";
 
 @Component({
   selector: 'app-offers-list-page',
   standalone: true,
   imports: [OffersListComponent],
-  template: `<app-offers-list />`
+  template: `
+    @if(!offerPreviews()) {
+      <p>Loading...</p>
+    } @else if (offerPreviews()!.length === 0) {
+      <p>No offers found</p>
+    } @else {
+      <app-offers-list [offerPreviewData]="offerPreviews()" />
+    }
+  `
 })
 export class OffersListPageComponent {
+  store = inject(OfferStore);
 
+  offerPreviews = this.store.offerPreviewList;
 }

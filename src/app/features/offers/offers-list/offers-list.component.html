@@ -1,3 +1,15 @@
 <div class="offer-list">
-  <app-offer-card />
+  @if(!offerPreviewData) {
+    <h1>Error loading offers</h1>
+  } @else {
+    @for(offer of offerPreviewData; track offer.id) {
+      <app-offer-card
+        [id]="offer.id"
+        [title]="offer.title"
+        [imgUrl]="offer.img_url"
+        [price]="offer.price"
+        [averageRating]="offer.averageRating"
+      />
+    }
+  }
 </div>

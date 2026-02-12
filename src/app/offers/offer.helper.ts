@@ -1,4 +1,4 @@
-import { IOffer, IOfferApiObject, IRatingList } from "./offer.model";
+import { IOffer, IOfferApiObject, IOfferPreview, IOfferPreviewList, IRatingList } from "./offer.model";
 
 // Let's reuse the rating avg as quick function
 const RATING_AVG = (ratings: IRatingList) => {
@@ -13,4 +13,16 @@ export function mapResponseToOffer(api: IOfferApiObject): IOffer {
   const averageRating = ratings.length > 0 ? RATING_AVG(ratings) : 0;
 
   return { ...api, averageRating };
+}
+
+// Adapt the new entire list to a preview list
+export function mapOfferToPreview(offer: IOffer): IOfferPreview {
+  const { id, title, averageRating, price, img_url } = offer;
+
+  return { id, title, averageRating, price, img_url };
+}
+
+// Sort offers by average rating
+export function sortOffers(offers: IOfferPreviewList): IOfferPreviewList {
+  return [...offers].sort((a,b) => b.averageRating - a.averageRating);
 }
