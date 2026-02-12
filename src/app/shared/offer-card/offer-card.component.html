@@ -3,6 +3,7 @@
 
   <div class="offer-card__info">
     <h3 class="offer-card__title">{{ title }}</h3>
+    <app-rating [rating]="averageRating" />
     <p class="offer-card__price">{{ price.toFixed(2) | currency:'EUR':'symbol':'1.2-2' }}</p>
   </div>
 </button>

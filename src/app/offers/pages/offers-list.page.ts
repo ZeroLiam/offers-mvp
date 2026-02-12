@@ -1,4 +1,4 @@
-import { OffersListComponent } from "@/features/offers/offers-list/offers-list.component";
+import { OffersListComponent } from "@/offers/offers-list/offers-list.component";
 import { Component, inject } from "@angular/core";
 import { OfferStore } from "../offer.store";
 
